@@ -42,11 +42,17 @@ $usuario->insert();
 echo $usuario;*/
 
 //atualizar usuario
-$usuario = new Usuario();
+/*$usuario = new Usuario();
 
-$usuario->loadById(9);
+$usuario->loadById(1);
 
 $usuario->update("professor","asdfa");
+
+echo $usuario;*/
+
+$usuario = new Usuario();
+$usuario->loadById(2);
+$usuario->delete();
 
 echo $usuario;
 
