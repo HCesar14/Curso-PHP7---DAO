@@ -40,11 +40,7 @@ class Usuario{
 
 		if(count($results) > 0){
 
-			$row = $results[0];
-
-			$this->setId($row['id']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
+			$this->setData($results[0]);
 		}
 	}
 
@@ -75,16 +71,53 @@ class Usuario{
 
 		if(count($results) > 0){
 
-			$row = $results[0];
-
-			$this->setId($row['id']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
+			$this->setData($results[0]);
 		}else{
 
 			throw new Exception("Login e/ou senha invalidos");
 			
 		}
+	}
+
+	public function setData($data){
+
+		$this->setId($data['id']);
+		$this->setDeslogin($data['deslogin']);
+		$this->setDessenha($data['dessenha']);
+	}
+
+	public function insert(){
+
+		$sql = new Sql();
+
+		$results = $sql->select("CALL inserir_usuario(:LOGIN, :SENHA)",array(
+			":LOGIN"=>$this->getDeslogin(),
+			":SENHA"=>$this->getDessenha()
+		));
+
+		if(count($results) > 0){
+
+			$this->setData($results[0]);
+		}
+	}
+
+	public function update($login, $password){
+
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+
+		$sql = new Sql();
+
+		$sql->query("UPDATE usuarios set deslogin = :LOGIN, dessenha = :SENHA where id = :ID", array(
+			":LOGIN"=>$this->getDeslogin(),
+			":SENHA"=>$this->getDessenha(),
+			":ID"=>$this->getId()
+		));
+	}
+
+	public function __construct($login = "", $senha = ""){
+		$this->setDeslogin($login);
+		$this->setDessenha($senha);
 	}
 
 	public function __toString(){

@@ -8,9 +8,9 @@ class Sql extends PDO{
 	{
 
 		$this->conn = new PDO(
-			"sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0",
-			"sa",
-			"root"
+			"mysql:dbname=dbphp7;host=localhost",
+			"root",
+			""
 		);		
 	}
 

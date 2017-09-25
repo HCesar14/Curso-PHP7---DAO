@@ -26,12 +26,28 @@ echo json_encode($lista);*/
 echo json_encode($busca);*/
 
 //valida login e senha
-
+/*
 $usuario = new Usuario();
 $usuario->login("henriquecesar14","7412");
 
+echo $usuario;*/
+/*
+//inserir novo usuario
+$usuario = new Usuario();
+$usuario->setDeslogin("teste3");
+$usuario->setDessenha("teste3");
+
+$usuario->insert();
+
+echo $usuario;*/
+
+//atualizar usuario
+$usuario = new Usuario();
+
+$usuario->loadById(9);
+
+$usuario->update("professor","asdfa");
+
 echo $usuario;
-
-
 
 ?>
